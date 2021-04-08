@@ -34,7 +34,7 @@ const WeekdaysList = ({user}) => {
         )
     } else {
         return (
-            <div>
+            <div className='weekdays'>
                 {weekDaysList.map(item => {
                     return <Menu id={item.id} name={item.name} key={item.id}/>
                 })}

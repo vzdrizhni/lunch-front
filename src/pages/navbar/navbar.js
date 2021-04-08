@@ -30,15 +30,10 @@ const NavBar = ({user}) => {
         </div>
       </nav>
 
-      <div className="auth-wrapper">
-        <div className="auth-inner">
-          <Switch>
-            <Route exact path='/' component={WeekdaysList} />
-            <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={SignUp} />
-          </Switch>
-        </div>
-      </div>
+      <Switch>
+        <Route path="/sign-in" component={Login} />
+        <Route path="/sign-up" component={SignUp} />
+      </Switch>
     </Router>
     )
 }

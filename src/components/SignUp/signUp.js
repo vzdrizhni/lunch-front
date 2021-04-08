@@ -45,30 +45,34 @@ class SignUp extends Component {
 
     render() {
         return (
-            <form onSubmit={this.register}>
-                <h3>Sign Up</h3>
+            <div className="auth-wrapper">
+                <div className="auth-inner">
+                    <form onSubmit={this.register}>
+                        <h3>Sign Up</h3>
 
-                <div>
-                    <span className="warning">{this.state.warning}</span>
+                        <div>
+                            <span className="warning">{this.state.warning}</span>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Name</label>
+                            <input type="text" className="form-control" placeholder="First name" name="username" value={this.state.username} onChange={this.handleChange} />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Email address</label>
+                            <input type="email" className="form-control" placeholder="Enter email" name="email" value={this.state.email} onChange={this.handleChange} />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleChange}/>
+                        </div>
+
+                        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                    </form>
                 </div>
-
-                <div className="form-group">
-                    <label>Name</label>
-                    <input type="text" className="form-control" placeholder="First name" name="username" value={this.state.username} onChange={this.handleChange} />
-                </div>
-
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" name="email" value={this.state.email} onChange={this.handleChange} />
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleChange}/>
-                </div>
-
-                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-            </form>
+            </div>
         );
     }
 }

@@ -46,25 +46,29 @@ class Login extends Component {
 
     render() {
         return (
-            <form onSubmit={this.login}>
-                <h3>Sign In</h3>
+            <div className="auth-wrapper">
+                <div className="auth-inner">
+                    <form onSubmit={this.login}>
+                        <h3>Sign In</h3>
 
-                <div>
-                    <span className="warning">{this.state.warning}</span>
+                        <div>
+                            <span className="warning">{this.state.warning}</span>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Email address</label>
+                            <input type="email" className="form-control" placeholder="Enter email" name="email" value={this.state.email} onChange={this.handleChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleChange}/>
+                        </div>
+
+                        <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                    </form>
                 </div>
-
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" name="email" value={this.state.email} onChange={this.handleChange}/>
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleChange}/>
-                </div>
-
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
-            </form>
+            </div>
         );
     }
 }
