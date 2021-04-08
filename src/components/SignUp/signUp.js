@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
-export default class SignUp extends Component {
+import { connect } from 'react-redux';
+import {setUser} from '../../redux/user/user.actions'
+
+class SignUp extends Component {
     state = {
         username: '',
         email: '',
@@ -19,14 +22,16 @@ export default class SignUp extends Component {
             body: JSON.stringify(this.state)
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            this.props.setUser(data);
+            console.log(this.props);
+        })
         .catch(err => console.log(err))
     }
 
     handleChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
-        console.log(this.state);
     };
 
     render() {
@@ -54,3 +59,11 @@ export default class SignUp extends Component {
         );
     }
 }
+
+const mapStateToProps = state => ({ user: state.user.currentUser });
+
+const mapDispatchToProps = dispatch => ({
+  setUser: value => dispatch(setUser(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
