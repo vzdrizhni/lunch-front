@@ -7,10 +7,10 @@ import Menu from '../../components/Menu/menus'
 
 import {connect} from 'react-redux';
 
+import './weekdays.css'
+
 const WeekdaysList = ({user}) => {
     const [weekDaysList, setWeekDaysList] = useState([]);
-
-    console.log(weekDaysList);
 
     useEffect(() => {
         fetch('http://localhost:3000/weekdays',{
@@ -28,8 +28,8 @@ const WeekdaysList = ({user}) => {
     if (weekDaysList.length === 0) {
         console.log('gotchas');
         return (
-            <div>
-                <Spinner animation="border" variant="primary" />
+            <div className='spinner'>
+                <Spinner animation="border" variant="white" />
             </div>
         )
     } else {

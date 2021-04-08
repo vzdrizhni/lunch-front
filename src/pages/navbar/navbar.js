@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 
 import { connect } from 'react-redux';
 
@@ -31,8 +31,10 @@ const NavBar = ({user}) => {
       </nav>
 
       <Switch>
+        <Route exact path="/" render={() => user ? (<WeekdaysList />) : (<Redirect to='/sign-in' />) } />
         <Route path="/sign-in" component={Login} />
         <Route path="/sign-up" component={SignUp} />
+        <Route path="/weekdays/:id" component={SignUp} />
       </Switch>
     </Router>
     )
