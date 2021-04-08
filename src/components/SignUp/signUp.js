@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './signUp.css'
 
 import { connect } from 'react-redux';
 import {setUser} from '../../redux/user/user.actions'
@@ -7,7 +8,8 @@ class SignUp extends Component {
     state = {
         username: '',
         email: '',
-        password: ''
+        password: '',
+        warning: ''
     }
 
     register = (e) => {
@@ -23,8 +25,12 @@ class SignUp extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            this.props.setUser(data);
-            console.log(this.props);
+            if (data.error) {
+                this.setState({warning: data.error})
+            } else {
+                this.props.setUser(data);
+                this.setState({username: '', email: '', password: '', warning: 'Account was created'})
+            }
         })
         .catch(err => console.log(err))
     }
@@ -39,19 +45,23 @@ class SignUp extends Component {
             <form onSubmit={this.register}>
                 <h3>Sign Up</h3>
 
+                <div>
+                    <span className="warning">{this.state.warning}</span>
+                </div>
+
                 <div className="form-group">
                     <label>Name</label>
-                    <input type="text" className="form-control" placeholder="First name" name="username" onChange={this.handleChange} />
+                    <input type="text" className="form-control" placeholder="First name" name="username" value={this.state.username} onChange={this.handleChange} />
                 </div>
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" name="email" onChange={this.handleChange} />
+                    <input type="email" className="form-control" placeholder="Enter email" name="email" value={this.state.email} onChange={this.handleChange} />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" name="password" onChange={this.handleChange}/>
+                    <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleChange}/>
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
