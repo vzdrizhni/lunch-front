@@ -30,6 +30,9 @@ class SignUp extends Component {
             } else {
                 this.props.setUser(data);
                 this.setState({username: '', email: '', password: '', warning: 'Account was created'})
+                setTimeout(()=> {
+                    this.setState({warning: ''})
+                }, 2000)
             }
         })
         .catch(err => console.log(err))
