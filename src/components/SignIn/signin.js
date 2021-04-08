@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 
-export default class SignUp extends Component {
+export default class Login extends Component {
     render() {
         return (
             <form>
-                <h3>Sign Up</h3>
-
-                <div className="form-group">
-                    <label>Name</label>
-                    <input type="text" className="form-control" placeholder="First name" />
-                </div>
+                <h3>Sign In</h3>
 
                 <div className="form-group">
                     <label>Email address</label>
@@ -21,7 +16,7 @@ export default class SignUp extends Component {
                     <input type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                <button type="submit" className="btn btn-primary btn-block">Submit</button>
             </form>
         );
     }

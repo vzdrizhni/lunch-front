@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import SignUp from '../../components/SignUp/signUp'
+import Login from '../../components/SignIn/signin'
 
 const NavBar = () => {
     return (
@@ -25,8 +26,8 @@ const NavBar = () => {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <Switch>
-            {/* <Route exact path='/' component={Login} /> */}
-            {/* <Route path="/sign-in" component={Login} /> */}
+            <Route exact path='/' component={Login} />
+            <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={SignUp} />
           </Switch>
         </div>
