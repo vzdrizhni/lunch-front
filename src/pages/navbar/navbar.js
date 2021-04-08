@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import SignUp from '../../components/SignUp/signUp'
 import Login from '../../components/SignIn/signin'
 import Logout from '../../components/Logout/logout'
+import WeekdaysList from '../../pages/Weekdays/weekdaysList'
 
 const NavBar = ({user}) => {
-    console.log(user);
     return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
@@ -33,7 +33,7 @@ const NavBar = ({user}) => {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <Switch>
-            <Route exact path='/' component={Login} />
+            <Route exact path='/' component={WeekdaysList} />
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={SignUp} />
           </Switch>
