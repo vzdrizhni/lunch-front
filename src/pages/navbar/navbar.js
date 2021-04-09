@@ -7,6 +7,7 @@ import SignUp from '../../components/SignUp/signUp'
 import Login from '../../components/SignIn/signin'
 import Logout from '../../components/Logout/logout'
 import WeekdaysList from '../../pages/Weekdays/weekdaysList'
+import MenuItem from '../../components/MenuItem/menu_item'
 
 const NavBar = ({user}) => {
     return (
@@ -34,7 +35,7 @@ const NavBar = ({user}) => {
         <Route exact path="/" render={() => user ? (<WeekdaysList />) : (<Redirect to='/sign-in' />) } />
         <Route path="/sign-in" component={Login} />
         <Route path="/sign-up" component={SignUp} />
-        <Route path="/weekdays/:id" component={SignUp} />
+        <Route path="/weekday/:id" component={MenuItem} />
       </Switch>
     </Router>
     )
