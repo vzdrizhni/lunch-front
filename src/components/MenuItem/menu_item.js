@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import '../../pages/Weekdays/weekdaysList'
 
 const MenuItem = (props) => {
-    console.log(props);
 
     const [weekDay, setWeekDay] = useState([]);
 
@@ -22,8 +21,6 @@ const MenuItem = (props) => {
         .then(data => setWeekDay(data.data))
         .catch()
     }, []);
-
-    console.log(weekDay);
 
     return (
         <div className='weekdays'>hfdndfdfhrhrdh</div>

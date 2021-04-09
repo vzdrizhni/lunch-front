@@ -8,13 +8,17 @@ import Login from '../../components/SignIn/signin'
 import Logout from '../../components/Logout/logout'
 import WeekdaysList from '../../pages/Weekdays/weekdaysList'
 import MenuItem from '../../components/MenuItem/menu_item'
+import AdminDropdown from '../../components/AdminDropdown/admindropdown'
+import CreateWeekDay from '../CreateWeekDay/createWeekDay'
 
 const NavBar = ({user}) => {
+  console.log(user);
     return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+              {user && user.user.admin ? (<AdminDropdown />) : ''}
               { !user ?
               (<ul className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -36,6 +40,7 @@ const NavBar = ({user}) => {
         <Route path="/sign-in" component={Login} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/weekday/:id" component={MenuItem} />
+        <Route exact path='/createWeekDay' component={CreateWeekDay}/>
       </Switch>
     </Router>
     )
