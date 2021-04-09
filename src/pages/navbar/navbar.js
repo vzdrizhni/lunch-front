@@ -10,6 +10,7 @@ import WeekdaysList from '../../pages/Weekdays/weekdaysList'
 import MenuItem from '../../components/MenuItem/menu_item'
 import AdminDropdown from '../../components/AdminDropdown/admindropdown'
 import CreateWeekDay from '../CreateWeekDay/createWeekDay'
+import AllItems from '../../components/AllItems/allItems'
 
 const NavBar = ({user}) => {
   console.log(user);
@@ -41,6 +42,7 @@ const NavBar = ({user}) => {
         <Route path="/sign-up" component={SignUp} />
         <Route path="/weekday/:id" component={MenuItem} />
         <Route exact path='/createWeekDay' component={CreateWeekDay}/>
+        <Route exact path='/order' component={AllItems}/>
       </Switch>
     </Router>
     )

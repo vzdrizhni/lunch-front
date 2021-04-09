@@ -11,6 +11,7 @@ const Logout = ({logout}) => {
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
                 <Link className="nav-link" to={"/sign-in"} onClick = {() => logout()}>Logout</Link>
+                <Link className="nav-link" to={"/order"}>Order</Link>
             </li>
         </ul>
     )
