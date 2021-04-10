@@ -2,10 +2,9 @@ import {connect} from 'react-redux';
 import {Button} from 'react-bootstrap';
 
 import { emptyOrder } from '../../redux/Order/order.actions'
+import { setTrigger} from '../../redux/trigger/trigger.actions'
 
 const SubmitOrder = (props) => {
-
-    console.log(props);
 
     const makeOrder = (e) => {
         e.preventDefault()
@@ -19,9 +18,9 @@ const SubmitOrder = (props) => {
             body: JSON.stringify({menu_items: props.order})
         })
         .then(response => response.json())
-        .then(data => {
-            console.log(data);
+        .then(() => {
             props.emptyOrder()
+            props.setTrigger()
         })
         .catch(err => console.log(err));
     }
@@ -35,10 +34,11 @@ const SubmitOrder = (props) => {
     )
 };
 
-const mapStateToProps = state => ({ order: state.order, user: state.user.currentUser });
+const mapStateToProps = state => ({ order: state.order, user: state.user.currentUser, trigger: state.trigger, menu: state.menu });
 
 const mapDispatchToProps = dispatch => ({
     emptyOrder: () => dispatch(emptyOrder()),
+    setTrigger: () => dispatch(setTrigger()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubmitOrder);

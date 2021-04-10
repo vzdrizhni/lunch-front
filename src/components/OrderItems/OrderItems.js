@@ -4,13 +4,15 @@ import {Card, Button} from 'react-bootstrap';
 
 import {connect} from 'react-redux';
 
-import {addItem} from '../../redux/Order/order.actions';
+import {addItemToCart} from '../../redux/Order/order.actions';
+import {filterMenu} from '../../redux/menu/menu.actions';
 
 const OrderItem = (props) => {
     const {name, price, menu_item_type, image, id} = props.orderItem;
 
     const addItemToOrder = (e) => {
-        props.addItem(props.orderItem)
+        props.addItemToCart(props.orderItem);
+        props.filterMenu(props.orderItem);
     }
 
 
@@ -27,8 +29,11 @@ const OrderItem = (props) => {
     )
 }
 
+const mapStateToProps = state => ({ trigger: state.trigger,  menu: state.menu});
+
 const mapDispatchToProps = dispatch => ({
-    addItem: value => dispatch(addItem(value)),
+    addItemToCart: value => dispatch(addItemToCart(value)),
+    filterMenu: value => dispatch(filterMenu(value)),
 });
 
-export default connect(null, mapDispatchToProps)(OrderItem);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderItem);

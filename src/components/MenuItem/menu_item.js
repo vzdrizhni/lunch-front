@@ -5,13 +5,11 @@ import {connect} from 'react-redux';
 
 import OrderItems from '../OrderItems/OrderItems';
 
-import { addItem } from '../../redux/menu/menu.actions';
+import { addItems } from '../../redux/menu/menu.actions';
 
 import '../AllItems/allItems.css';
 
 const MenuItem = (props) => {
-
-    const [weekDay, setWeekDay] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:3000/weekdays/' + props.match.params.id,{
@@ -23,15 +21,16 @@ const MenuItem = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            setWeekDay(data.data.menu_items);
+            console.log(data.data.menu_items);
+            props.addItems(data.data.menu_items);
         })
         .catch()
-    }, [props.menu]);
+    }, [props.trigger]);
 
     return (
         <div className="order-column">
             <h4>Choose Items From Menu</h4>
-            {weekDay.map((item) => {
+            {props.menu.map((item) => {
                 return  <OrderItems key={item.id} orderItem={item} {...props} />
             })}
         </div>
@@ -39,9 +38,9 @@ const MenuItem = (props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addItem: value => dispatch(addItem(value)),
+    addItems: value => dispatch(addItems(value)),
 });
 
-const mapStateToProps = state => ({ user: state.user.currentUser, menu: state.menu });
+const mapStateToProps = state => ({ user: state.user.currentUser, menu: state.menu, order: state.order, trigger: state.trigger });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuItem);
