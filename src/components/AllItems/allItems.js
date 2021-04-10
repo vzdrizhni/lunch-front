@@ -21,7 +21,6 @@ const AllItems = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             setMealItems(data.data);
         })
         .catch(err => console.log(err))
@@ -29,6 +28,7 @@ const AllItems = (props) => {
 
     return (
         <div className='order-column'>
+            <h4>Add items to menu</h4>
             {mealItems.map(item => {
                 return <Items name={item.name} price={item.price} type={item.menu_item_type} image={item.image} key={item.id} id={item.id} {...props} />
             })}

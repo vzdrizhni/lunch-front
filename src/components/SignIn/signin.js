@@ -33,7 +33,8 @@ class Login extends Component {
                 this.setState({email: '', password: '', warning: 'You are logged in.'});
                 setTimeout(()=> {
                     this.setState({warning: ''})
-                }, 2000)
+                    this.props.history.push('/');
+                }, 1000)
             }
         })
         .catch(err => console.log(err))

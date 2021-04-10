@@ -9,6 +9,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 action.payload
             ]
+        case orderActionTypes.REMOVE_ITEM:
+            return [...state.filter(item => item.id !== action.payload)]
+        case orderActionTypes.EMPTY_ORDER:
+            return []
         default:
             return state;
     }

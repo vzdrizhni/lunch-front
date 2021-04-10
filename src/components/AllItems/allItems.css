@@ -4,4 +4,14 @@
     position: relative;
     flex-direction: column;
     align-items: center;
+    border: #343a40 2.5px solid;
+    padding: 50px;
+    margin: 0 20px;
+    background-color: #dfe6e9;
+    border-radius: 15px;
+}
+
+.order-column .card {
+    width: 23rem !important;
+    margin: 8px 0;
 }

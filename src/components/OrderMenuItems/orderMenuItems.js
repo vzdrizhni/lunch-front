@@ -1,10 +1,20 @@
 import React from 'react';
 
 import { Card, Button } from 'react-bootstrap';
+import {connect} from 'react-redux';
+
+import { removeItem } from '../../redux/Order/order.actions';
+
 
 const OrderMenuItems = (props) => {
 
-    const {name, price, menu_item_type, image} = props.item;
+    const {name, price, menu_item_type, image, id} = props.item;
+
+    const removeItemFromOrder = (e) => {
+        e.preventDefault();
+
+        props.removeItem(id);
+    }
 
     return(
         <Card style={{ width: '18rem' }}>
@@ -13,10 +23,14 @@ const OrderMenuItems = (props) => {
               <Card.Title>{name}</Card.Title>
               <Card.Text>{`${price} $`}</Card.Text>
               <Card.Text>{menu_item_type}</Card.Text>
-              <Button variant="success">Add to Menu</Button>
+              <Button variant="danger" onClick={removeItemFromOrder}>Remove Item</Button>
             </Card.Body>
         </Card>
     )
 };
 
-export default OrderMenuItems
+const mapDispatchToProps = dispatch => ({
+    removeItem: value => dispatch(removeItem(value)),
+});
+
+export default connect(null, mapDispatchToProps)(OrderMenuItems);
