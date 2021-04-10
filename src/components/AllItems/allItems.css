@@ -3,4 +3,5 @@
     width: 100%;
     position: relative;
     flex-direction: column;
+    align-items: center;
 }

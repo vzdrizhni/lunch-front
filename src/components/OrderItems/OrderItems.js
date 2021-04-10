@@ -4,27 +4,13 @@ import {Card, Button} from 'react-bootstrap';
 
 import {connect} from 'react-redux';
 
-import {addItem} from '../../redux/menu/menu.actions'
+import {addItem} from '../../redux/Order/order.actions';
 
 const OrderItem = (props) => {
     const {name, price, menu_item_type, image, id} = props.orderItem;
 
-    const addItem = (e) => {
-        e.preventDefault()
-        fetch(`http://localhost:3000/weekdays/${props.match.params.id}/orders`, {
-            method: 'POST',
-            headers: {
-                Authorization: 'Bearer ' + props.user.token,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({menu_items: [{id: id}]})
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            props.addItem(data.data.menu_items[0])
-        })
-        .catch(err => console.log(err))
+    const addItemToOrder = (e) => {
+        props.addItem(props.orderItem)
     }
 
 
@@ -35,7 +21,7 @@ const OrderItem = (props) => {
               <Card.Title>{name}</Card.Title>
               <Card.Text>{`${price} $`}</Card.Text>
               <Card.Text>{menu_item_type}</Card.Text>
-              <Button variant="success" onClick={addItem}>Add to Order</Button>
+              <Button variant="success" onClick={addItemToOrder}>Add to Order</Button>
             </Card.Body>
         </Card>
     )

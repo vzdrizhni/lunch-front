@@ -28,8 +28,6 @@ const MenuItem = (props) => {
         .catch()
     }, [props.menu]);
 
-    console.log(props);
-
     return (
         <div className="order-column">
             {weekDay.map((item) => {

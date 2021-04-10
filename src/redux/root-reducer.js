@@ -5,16 +5,18 @@ import storage from 'redux-persist/lib/storage'
 
 import userReducer from "./user/user.reducer";
 import menuReducer from './menu/menu.reducer';
+import orderReducer from './Order/order.reducer';
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['user']
+    whitelist: ['user', 'order']
 }
 
 const rootReducer = combineReducers({
     user: userReducer,
-    menu: menuReducer
+    menu: menuReducer,
+    order: orderReducer
 })
 
 export default persistReducer(persistConfig, rootReducer)
