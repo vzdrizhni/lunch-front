@@ -3,11 +3,11 @@ import React from 'react'
 import {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 
-import Item from '../Items/Items';
+import OrderItems from '../OrderItems/OrderItems';
 
-import { addItem } from '../../redux/menu/menu.actions'
+import { addItem } from '../../redux/menu/menu.actions';
 
-import '../../pages/Weekdays/weekdaysList'
+import '../AllItems/allItems.css';
 
 const MenuItem = (props) => {
 
@@ -31,9 +31,9 @@ const MenuItem = (props) => {
     console.log(props);
 
     return (
-        <div>
+        <div className="order-column">
             {weekDay.map((item) => {
-                return  <div className='weekdays' key={item.id}>hfdndfdfhrhrdh</div>
+                return  <OrderItems key={item.id} orderItem={item} {...props} />
             })}
         </div>
     )

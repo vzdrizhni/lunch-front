@@ -28,7 +28,7 @@ const AllItems = (props) => {
     }, [])
 
     return (
-        <div className='order'>
+        <div className='order-column'>
             {mealItems.map(item => {
                 return <Items name={item.name} price={item.price} type={item.menu_item_type} image={item.image} key={item.id} id={item.id} {...props} />
             })}
