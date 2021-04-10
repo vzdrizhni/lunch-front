@@ -3,6 +3,8 @@ import React from 'react'
 import {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 
+import Item from '../Items/Items';
+
 import '../../pages/Weekdays/weekdaysList'
 
 const MenuItem = (props) => {
@@ -18,12 +20,21 @@ const MenuItem = (props) => {
             }
         })
         .then(response => response.json())
-        .then(data => setWeekDay(data.data))
+        .then(data => {
+            console.log(data.data.menu_items);
+            setWeekDay(data.data.menu_items);
+        })
         .catch()
     }, []);
 
+    console.log(props);
+
     return (
-        <div className='weekdays'>hfdndfdfhrhrdh</div>
+        <div>
+            {weekDay.map((item) => {
+                return  <div className='weekdays'>hfdndfdfhrhrdh</div>
+            })}
+        </div>
     )
 }
 

@@ -5,4 +5,5 @@
     position: relative;
     top: 80px;
     justify-content: space-around;
+    flex-direction: column;
 }
