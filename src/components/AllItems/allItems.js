@@ -9,8 +9,6 @@ import './allItems.css'
 
 const AllItems = (props) => {
 
-    console.log(props);
-
     const [mealItems, setMealItems] = useState([]);
 
     useEffect(() => {

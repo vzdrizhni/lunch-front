@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 
 import Item from '../Items/Items';
 
+import { addItem } from '../../redux/menu/menu.actions'
+
 import '../../pages/Weekdays/weekdaysList'
 
 const MenuItem = (props) => {
@@ -21,23 +23,26 @@ const MenuItem = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data.data.menu_items);
             setWeekDay(data.data.menu_items);
         })
         .catch()
-    }, []);
+    }, [props.menu]);
 
     console.log(props);
 
     return (
         <div>
             {weekDay.map((item) => {
-                return  <div className='weekdays'>hfdndfdfhrhrdh</div>
+                return  <div className='weekdays' key={item.id}>hfdndfdfhrhrdh</div>
             })}
         </div>
     )
 }
 
-const mapStateToProps = state => ({ user: state.user.currentUser });
+const mapDispatchToProps = dispatch => ({
+    addItem: value => dispatch(addItem(value)),
+});
 
-export default connect(mapStateToProps)(MenuItem);
+const mapStateToProps = state => ({ user: state.user.currentUser, menu: state.menu });
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuItem);

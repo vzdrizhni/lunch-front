@@ -13,7 +13,6 @@ import CreateWeekDay from '../CreateWeekDay/createWeekDay'
 import AllItems from '../../components/AllItems/allItems'
 
 const NavBar = ({user}) => {
-  console.log(user);
     return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
