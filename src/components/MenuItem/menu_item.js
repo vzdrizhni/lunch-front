@@ -22,7 +22,7 @@ const MenuItem = (props) => {
         .then(response => response.json())
         .then(data => {
             console.log(data.data.menu_items);
-            props.addItems(data.data.menu_items);
+            props.addItems(data.data.menu_items.filter(item => !props.order.map(orderItem => orderItem.menu_item_type).includes(item.menu_item_type)));
         })
         .catch()
     }, [props.trigger]);

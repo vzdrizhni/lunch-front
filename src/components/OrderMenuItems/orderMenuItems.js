@@ -4,6 +4,7 @@ import { Card, Button } from 'react-bootstrap';
 import {connect} from 'react-redux';
 
 import { removeItem } from '../../redux/Order/order.actions';
+import {setTrigger } from '../../redux/trigger/trigger.actions';
 
 
 const OrderMenuItems = (props) => {
@@ -14,6 +15,7 @@ const OrderMenuItems = (props) => {
         e.preventDefault();
 
         props.removeItem(id);
+        props.setTrigger();
     }
 
     return(
@@ -31,6 +33,7 @@ const OrderMenuItems = (props) => {
 
 const mapDispatchToProps = dispatch => ({
     removeItem: value => dispatch(removeItem(value)),
+    setTrigger: () => dispatch(setTrigger()),
 });
 
 export default connect(null, mapDispatchToProps)(OrderMenuItems);

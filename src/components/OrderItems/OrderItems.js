@@ -15,7 +15,6 @@ const OrderItem = (props) => {
         props.filterMenu(props.orderItem);
     }
 
-
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={image} />

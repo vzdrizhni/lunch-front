@@ -8,6 +8,9 @@ import SubmitOrder from '../../components/SubmitOrder/submitOrder';
 import '../AllItems/allItems.css'
 
 const OrderList = (props) => {
+
+    const totalPrice = props.order.reduce((a, b) => a + b.price, 0);
+
     return(
         <div className='order-column'>
             <h4>Order List</h4>
@@ -15,6 +18,7 @@ const OrderList = (props) => {
                 return <OrderMenuItems item={item} key={item.id} />
             })}
             <div>
+                {props.order.length > 0 ? <h5>Total Price: {totalPrice.toFixed(2)}</h5> : ''}
                 {props.order.length > 0 ? <SubmitOrder {...props} /> : ''}
             </div>
         </div>
