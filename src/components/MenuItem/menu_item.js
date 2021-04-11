@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {connect} from 'react-redux';
 
 import OrderItems from '../OrderItems/OrderItems';
