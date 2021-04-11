@@ -1,0 +1,9 @@
+.users-wrapper {
+    display: flex;
+    position: relative;
+    top: 125px;
+}
+
+.super-card {
+    margin: 0 10px;
+}

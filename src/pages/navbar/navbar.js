@@ -10,7 +10,8 @@ import WeekdaysList from '../../pages/Weekdays/weekdaysList'
 import Order from '../OrderPage/orderPage'
 import AdminDropdown from '../../components/AdminDropdown/admindropdown'
 import CreateWeekDay from '../CreateWeekDay/createWeekDay'
-import AllItems from '../../components/AllItems/allItems'
+import ChangeCredentials from '../ChangeCredentials/changeCredentials';
+import Users from '../Users/users';
 
 const NavBar = ({user}) => {
     return (
@@ -41,7 +42,8 @@ const NavBar = ({user}) => {
         <Route path="/sign-up" component={SignUp} />
         <Route path="/weekday/:id" component={Order} />
         <Route exact path='/createWeekDay' component={CreateWeekDay}/>
-        <Route exact path='/order' component={AllItems}/>
+        <Route exact path='/change' component={ChangeCredentials}/>
+        <Route exact path='/users' component={Users}/>
       </Switch>
     </Router>
     )

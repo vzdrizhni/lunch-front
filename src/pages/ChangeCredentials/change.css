@@ -1,0 +1,16 @@
+.super-form {
+    position: relative;
+    top: 125px;
+    width: 33%;
+    background-color: #dfe6e9;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+
+.ferm-group {
+    padding: 10px 20px 0 20px;
+}
+
+.ferm-btn {
+    margin: 19px !important;
+}

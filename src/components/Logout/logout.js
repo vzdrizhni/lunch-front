@@ -13,7 +13,7 @@ const Logout = ({logout}) => {
                 <Link className="nav-link" to={"/sign-in"} onClick = {() => logout()}>Logout</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to={"/order"}>Order</Link>
+                <Link className="nav-link" to={"/change"}>Change Credentials</Link>
             </li>
         </ul>
     )
