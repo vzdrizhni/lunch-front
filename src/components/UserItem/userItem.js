@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 
-const UserItem = () => {
+const UserItem = (props) => {
     return(
         <Card
             bg={'Light'.toLowerCase()}
@@ -8,13 +8,10 @@ const UserItem = () => {
             style={{ width: '18rem' }}
             className="mb-2 super-card"
             >
-            <Card.Header>Name</Card.Header>
+            <Card.Header>User #{props.id}</Card.Header>
                 <Card.Body>
-                    <Card.Title>{'dark'} Card Title </Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                    </Card.Text>
+                    <Card.Title>{'dark'} {props.name} </Card.Title>
+                    <Card.Text>{props.email}</Card.Text>
             </Card.Body>
         </Card>
     )

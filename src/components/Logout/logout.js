@@ -15,6 +15,9 @@ const Logout = ({logout}) => {
             <li className="nav-item">
                 <Link className="nav-link" to={"/change"}>Change Credentials</Link>
             </li>
+            <li className="nav-item">
+                <Link className="nav-link" to={"/user_orders"}>Orders</Link>
+            </li>
         </ul>
     )
 }
