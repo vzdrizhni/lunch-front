@@ -1,0 +1,8 @@
+.menu-items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-card {
+    justify-content: space-between;
+}

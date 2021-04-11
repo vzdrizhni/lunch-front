@@ -3,20 +3,21 @@ import {useState, useEffect} from 'react';
 
 import {Spinner} from 'react-bootstrap'
 
-import Menu from '../../components/Menu/menus'
+import Menu from '../../components/Menu/menus';
+import WeekDaysOrderList from '../WeekDaysList/weekDayList';
 
 import {connect} from 'react-redux';
 
 import './weekdays.css'
 
-const WeekdaysList = ({user}) => {
+const WeekdaysList = (props) => {
     const [weekDaysList, setWeekDaysList] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:3000/weekdays',{
             method: 'GET',
             headers: {
-                Authorization: 'Bearer ' + user.token,
+                Authorization: 'Bearer ' + props.user.token,
                 'Content-Type': 'application/json',
             }
         })
@@ -33,13 +34,23 @@ const WeekdaysList = ({user}) => {
             </div>
         )
     } else {
-        return (
-            <div className='weekdays'>
-                {weekDaysList.map(item => {
-                    return <Menu id={item.id} name={item.name} key={item.id}/>
-                })}
-            </div>
-        )
+        if (props.match.path === '/order_days') {
+            return(
+                <div className='weekdays'>
+                    {weekDaysList.map(item => {
+                        return <WeekDaysOrderList id={item.id} name={item.name} key={item.id} {...props} />
+                    })}
+                </div>
+            )
+        } else {
+            return (
+                <div className='weekdays'>
+                    {weekDaysList.map(item => {
+                        return <Menu id={item.id} name={item.name} key={item.id} {...props} />
+                    })}
+                </div>
+            )
+        }
     }
 };
 

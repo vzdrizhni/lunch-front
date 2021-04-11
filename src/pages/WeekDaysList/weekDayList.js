@@ -4,27 +4,27 @@ import { Link } from "react-router-dom";
 
 import {Card} from 'react-bootstrap'
 
-const Menu = ({id, name}) => {
+const WeekDaysOrderList = ({id, name}) => {
     return (
         <div>
-            <Link to={`/weekday/${id}`}>
+            <Link to={`/order_days/${id}`}>
             <Card
-                bg={'Secondary'.toLowerCase()}
+                bg={'Warning'.toLowerCase()}
                 text={'white'}
                 style={{ width: '18rem' }}
                 className="mb-2"
             >
-                <Card.Header>{name}</Card.Header>
+                <Card.Header><span>Date: {name}</span></Card.Header>
                     <Card.Body>
-                      <Card.Title>{'white'} Card Title </Card.Title>
+                      <Card.Title>For admins only!</Card.Title>
                       <Card.Text>
-                        Click here to see the menu list and choose one of the menu list types!
+                        Click here to see the order history for this day!
                       </Card.Text>
                 </Card.Body>
             </Card>
             </Link>
         </div>
     )
-}
+};
 
-export default Menu
+export default WeekDaysOrderList;

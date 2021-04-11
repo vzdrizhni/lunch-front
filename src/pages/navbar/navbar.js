@@ -13,15 +13,16 @@ import CreateWeekDay from '../CreateWeekDay/createWeekDay'
 import ChangeCredentials from '../ChangeCredentials/changeCredentials';
 import Users from '../Users/users';
 import UserOrders from '../../pages/UsersOrders/usersOrders';
+import WeekDayOrders from '../WeekDayOrdersPage/weekDayOrderPage';
 
-const NavBar = ({user}) => {
+const NavBar = (props) => {
     return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-              {user && user.user.admin ? (<AdminDropdown />) : ''}
-              { !user ?
+              {props.user && props.user.user.admin ? (<AdminDropdown />) : ''}
+              { !props.user ?
               (<ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link className="nav-link" to={"/sign-in"}>Login</Link>
@@ -38,7 +39,7 @@ const NavBar = ({user}) => {
       </nav>
 
       <Switch>
-        <Route exact path="/" render={() => user ? (<WeekdaysList />) : (<Redirect to='/sign-in' />) } />
+        <Route exact path="/" component={WeekdaysList} />
         <Route path="/sign-in" component={Login} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/weekday/:id" component={Order} />
@@ -46,6 +47,8 @@ const NavBar = ({user}) => {
         <Route exact path='/change' component={ChangeCredentials}/>
         <Route exact path='/users' component={Users}/>
         <Route exact path='/user_orders' component={UserOrders}/>
+        <Route exact path='/order_days' component={WeekdaysList}/>
+        <Route exact path='/order_days/:id' component={WeekDayOrders} />
       </Switch>
     </Router>
     )

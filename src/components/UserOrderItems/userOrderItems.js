@@ -2,7 +2,9 @@ import { Card, ListGroup, Button } from 'react-bootstrap';
 
 import {connect} from 'react-redux';
 
-import {setTrigger} from '../../redux/trigger/trigger.actions'
+import {setTrigger} from '../../redux/trigger/trigger.actions';
+
+import './userOrderItems.css';
 
 const UserOrderItem = (props) => {
 
@@ -12,8 +14,6 @@ const UserOrderItem = (props) => {
 
     const removeItem = (param) => (e) => {
         menuItems.menu_items = menuItems.menu_items.filter(item => item.id !== param);
-
-        console.log(menuItems);
 
         fetch('http://localhost:3000/orders/'+props.id, {
             method: 'PUT',
@@ -46,19 +46,21 @@ const UserOrderItem = (props) => {
     }
 
     return(
-        <Card style={{ width: '18rem' }}>
-            <Card.Header>date: {props.name}</Card.Header>
-            <ListGroup variant="flush">
+        <Card style={{ width: '18rem' }} className="order-card">
+            <Card.Header><span>Date: {props.name}</span></Card.Header>
+            <ListGroup variant="flush" >
               {props.mealItems.map(item => {
-                return <ListGroup.Item>
-                    <span>{item.name}</span> : <span>{item.price}$</span>
-                    {props.status === 'pending' ? <Button variant="danger" size="sm" onClick={removeItem(item.id)}>Remove</Button> : ''}
+                return <ListGroup.Item >
+                    <div className="menu-items">
+                        <span>{item.name} : {item.price}$</span>
+                        {props.status === 'pending' ? <Button variant="danger" size="sm" onClick={removeItem(item.id)}>Remove</Button> : ''}
+                    </div>
                 </ListGroup.Item>
               })}
               <ListGroup.Item>Status: {props.status}</ListGroup.Item>
-              <ListGroup.Item>Total Price: {props.mealItems.reduce((a, b) => a + b.price, 0)}$</ListGroup.Item>
-              {props.status === 'pending' ? <Button variant="danger" size="sm" onClick={deleteOrder}>Remove</Button> : ''}
+              <ListGroup.Item>Total Price: {props.mealItems.reduce((a, b) => a + b.price, 0).toFixed(2)}$</ListGroup.Item>
             </ListGroup>
+              {props.status === 'pending' ? <Button variant="danger" size="sm" onClick={deleteOrder}>Remove</Button> : ''}
         </Card>
     )
 };
