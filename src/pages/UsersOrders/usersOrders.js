@@ -3,6 +3,8 @@ import {useState, useEffect} from 'react';
 
 import UserOrderItems from '../../components/UserOrderItems/userOrderItems'
 
+import '../OrderPage/order.css'
+
 const UserOrders = (props) => {
 
     const [orders, setOrders] = useState([]);
@@ -20,9 +22,11 @@ const UserOrders = (props) => {
         .catch(err => console.log(err))
     }, [])
 
+    console.log(orders);
+
     return(
-        <div>
-            {orders.map(item => <UserOrderItems />)}
+        <div className="order">
+            {orders.map(item => <UserOrderItems  id={item.id} name={item.weekday.name} price={item.price} key={item.id} mealItems={item.menu_items}/>)}
         </div>
     )
 };

@@ -1,13 +1,15 @@
 import { Card, ListGroup } from 'react-bootstrap';
 
-const UserOrderItem = () => {
+const UserOrderItem = (props) => {
+    console.log(props);
     return(
         <Card style={{ width: '18rem' }}>
-            <Card.Header>Featured</Card.Header>
+            <Card.Header>date: {props.name}</Card.Header>
             <ListGroup variant="flush">
-              <ListGroup.Item>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+              {props.mealItems.map(item => {
+                return <ListGroup.Item><span>{item.name}</span> : <span>{item.price}$</span></ListGroup.Item>
+              })}
+              <ListGroup.Item>Total Price: {props.mealItems.reduce((a, b) => a + b.price, 0)}$</ListGroup.Item>
             </ListGroup>
         </Card>
     )
