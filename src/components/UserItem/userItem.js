@@ -10,7 +10,7 @@ const UserItem = (props) => {
             >
             <Card.Header>User #{props.id}</Card.Header>
                 <Card.Body>
-                    <Card.Title>{'dark'} {props.name} </Card.Title>
+                    <Card.Title>{props.name} </Card.Title>
                     <Card.Text>{props.email}</Card.Text>
             </Card.Body>
         </Card>

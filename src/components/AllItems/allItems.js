@@ -23,14 +23,16 @@ const AllItems = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            setMealItems(data.data);
+            setMealItems(data.data.filter(item => !props.menu.map(orderItem => orderItem.id).includes(item.id)));
         })
         .catch(err => console.log(err))
-    }, [])
+    }, [props.menu.length])
 
     if (props.date !== today) {
         disabled = true;
     }
+
+    console.log(props.menu);
 
     return (
         <div className='order-column' style={disabled ? {pointerEvents: "none", opacity: "0"} : {}}>
@@ -43,6 +45,6 @@ const AllItems = (props) => {
 
 }
 
-const mapStateToProps = state => ({ user: state.user.currentUser, date: state.date });
+const mapStateToProps = state => ({ user: state.user.currentUser, date: state.date, menu: state.menu });
 
 export default connect(mapStateToProps)(AllItems);

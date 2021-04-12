@@ -24,9 +24,11 @@ const Users = (props) => {
         .catch(err => console.log(err))
     }, [])
 
+    console.log(users);
+
     return(
         <div className="users-wrapper">
-            {users.map(item => <UserItem key={item.id} name={item.name} email={item.email} id={item.id}/>)}
+            {users.map(item => <UserItem key={item.id} name={item.username} email={item.email} id={item.id}/>)}
         </div>
     )
 };
