@@ -10,6 +10,7 @@ const CreateMenuItem = (props) => {
     const [price, setPrice] = useState('');
     const [menu_item_type, setMenuItemType] = useState('');
     const [image, setImage] = useState('');
+    const [warning, setWarning] = useState('');
 
     console.log(name, price, menu_item_type, image);
 
@@ -32,19 +33,24 @@ const CreateMenuItem = (props) => {
         })
         .then(response => response.json())
         .then(data => {
+          if (data.error) {
             console.log(data);
-
+            setWarning(data.error)
+          }
         })
         .catch(err => console.log(err));
     }
 
     return (
         <Modal
-        {...props}
+        show={props.show} onHide={props.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-      >
+        >
+        <div>
+          <span className="warning">{warning}</span>
+        </div>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             Create A Meal Item
@@ -64,7 +70,7 @@ const CreateMenuItem = (props) => {
             </Form.Group>
             <Form.Label>Choose Menu Item Type</Form.Label>
             <Form.Control as="select" onChange={(e) => setMenuItemType(e.target.value)}>
-                <option>First_Course</option>
+                <option defaultValue="selected">First_Course</option>
                 <option>Main_Course</option>
                 <option>Drink</option>
             </Form.Control>

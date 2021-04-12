@@ -27,7 +27,6 @@ const WeekdaysList = (props) => {
     }, [])
 
     if (weekDaysList.length === 0) {
-        console.log('gotchas');
         return (
             <div className='spinner'>
                 <Spinner animation="border" variant="white" />

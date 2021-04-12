@@ -4,10 +4,10 @@ import {Card, Button} from 'react-bootstrap';
 
 import {connect} from 'react-redux';
 
-import {addItem} from '../../redux/menu/menu.actions'
+import {addItem} from '../../redux/menu/menu.actions';
+import {setTrigger} from '../../redux/trigger/trigger.actions';
 
 const Item = (props) => {
-    const {name, price, menu_item_type, image, id} = props;
 
     const addItem = (e) => {
         e.preventDefault()
@@ -17,24 +17,22 @@ const Item = (props) => {
                 Authorization: 'Bearer ' + props.user.token,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({menu_items: [{id: id}]})
+            body: JSON.stringify({menu_items: [{id: props.id}]})
         })
         .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            props.addItem(data.data.menu_items[0])
+        .then(() => {
+            props.setTrigger();
         })
         .catch(err => console.log(err))
     }
 
-
     return (
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={image} />
+            <Card.Img variant="top" src={props.image} />
             <Card.Body>
-              <Card.Title>{name}</Card.Title>
-              <Card.Text>{`${price} $`}</Card.Text>
-              <Card.Text>{menu_item_type}</Card.Text>
+              <Card.Title>{props.name}</Card.Title>
+              <Card.Text>{`${props.price} $`}</Card.Text>
+              <Card.Text>{props.type}</Card.Text>
               <Button variant="success" onClick={addItem}>Add to Menu</Button>
             </Card.Body>
         </Card>
@@ -43,6 +41,7 @@ const Item = (props) => {
 
 const mapDispatchToProps = dispatch => ({
     addItem: value => dispatch(addItem(value)),
+    setTrigger: () => dispatch(setTrigger()),
 });
 
 export default connect(null, mapDispatchToProps)(Item);

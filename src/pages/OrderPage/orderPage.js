@@ -10,8 +10,6 @@ import './order.css'
 
 const OrderPage = (props) => {
 
-    console.log(props);
-
     if (props.user.user.admin) {
         return(
             <div className="order">

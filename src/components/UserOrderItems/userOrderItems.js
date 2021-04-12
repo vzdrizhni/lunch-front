@@ -50,7 +50,7 @@ const UserOrderItem = (props) => {
             <Card.Header><span>Date: {props.name}</span></Card.Header>
             <ListGroup variant="flush" >
               {props.mealItems.map(item => {
-                return <ListGroup.Item >
+                return <ListGroup.Item key={item.id}>
                     <div className="menu-items">
                         <span>{item.name} : {item.price}$</span>
                         {props.status === 'pending' ? <Button variant="danger" size="sm" onClick={removeItem(item.id)}>Remove</Button> : ''}

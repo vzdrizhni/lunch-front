@@ -7,8 +7,6 @@ import '../Weekdays/weekdays.css'
 
 const CreateWeekDay = (props) => {
 
-    console.log(props);
-
     const createDay = () => {
         fetch('http://localhost:3000/weekdays', {
             method: 'POST',

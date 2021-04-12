@@ -19,13 +19,10 @@ const Users = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             setUsers(data.data)
         })
         .catch(err => console.log(err))
     }, [])
-
-    console.log(users);
 
     return(
         <div className="users-wrapper">
