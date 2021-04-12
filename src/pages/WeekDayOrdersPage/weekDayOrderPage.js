@@ -8,6 +8,7 @@ const WeekDayOrders = (props) => {
     console.log(props);
 
     const [orders, setOrders] = useState([]);
+    const [weekday, setWeekday] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:3000/weekdays/'+props.match.params.id, {
@@ -19,7 +20,8 @@ const WeekDayOrders = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log(data.data);
+            setWeekday(data.data.name)
             setOrders(data.data.orders)
         })
         .catch(err => console.log(err))
@@ -27,7 +29,7 @@ const WeekDayOrders = (props) => {
 
     return(
         <div className="order">
-            {orders.map(item => <CurrentDayOrders key={item.id}/>)}
+            {orders.map(item => <CurrentDayOrders key={item.id} total_price={item.total_price} name={weekday} status={item.status} id={item.id} />)}
         </div>
     )
 };
