@@ -8,11 +8,17 @@ import SubmitOrder from '../../components/SubmitOrder/submitOrder';
 import '../AllItems/allItems.css'
 
 const OrderList = (props) => {
+    let today = new Date().toJSON().slice(0,10).replace(/-/g,'-');
+    let disabled;
 
     const totalPrice = props.order.reduce((a, b) => a + b.price, 0);
 
+    if (props.date !== today) {
+        disabled = true;
+    }
+
     return(
-        <div className='order-column'>
+        <div className='order-column' style={disabled ? {pointerEvents: "none", opacity: "0"} : {}}>
             <h4>Order List</h4>
             {props.order.map((item) => {
                 return <OrderMenuItems item={item} key={item.id} />
@@ -25,6 +31,6 @@ const OrderList = (props) => {
     )
 }
 
-const mapStateToProps = state => ({ order: state.order, user: state.user.currentUser });
+const mapStateToProps = state => ({ order: state.order, user: state.user.currentUser, date: state.date });
 
 export default connect(mapStateToProps)(OrderList);
