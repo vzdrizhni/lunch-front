@@ -14,7 +14,7 @@ const WeekdaysList = (props) => {
     const [weekDaysList, setWeekDaysList] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/weekdays',{
+        fetch('https://frozen-spire-70160.herokuapp.com/weekdays',{
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

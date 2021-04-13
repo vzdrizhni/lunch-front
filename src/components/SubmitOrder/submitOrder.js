@@ -9,7 +9,7 @@ const SubmitOrder = (props) => {
     const makeOrder = (e) => {
         e.preventDefault()
 
-        fetch(`http://localhost:3000/weekdays/${props.match.params.id}/orders`, {
+        fetch(`https://frozen-spire-70160.herokuapp.com/weekdays/${props.match.params.id}/orders`, {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

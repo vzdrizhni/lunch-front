@@ -14,7 +14,7 @@ const AllItems = (props) => {
     const [mealItems, setMealItems] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/menu_items', {
+        fetch('https://frozen-spire-70160.herokuapp.com/menu_items', {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
@@ -31,8 +31,6 @@ const AllItems = (props) => {
     if (props.date !== today) {
         disabled = true;
     }
-
-    console.log(props.menu);
 
     return (
         <div className='order-column' style={disabled ? {pointerEvents: "none", opacity: "0"} : {}}>

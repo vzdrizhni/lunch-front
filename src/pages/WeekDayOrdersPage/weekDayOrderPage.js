@@ -5,13 +5,11 @@ import CurrentDayOrders from '../../components/OrdersForTheCurrentDay/currentDay
 
 const WeekDayOrders = (props) => {
 
-    console.log(props);
-
     const [orders, setOrders] = useState([]);
     const [weekday, setWeekday] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/weekdays/'+props.match.params.id, {
+        fetch('https://frozen-spire-70160.herokuapp.com/weekdays/'+props.match.params.id, {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
@@ -20,7 +18,6 @@ const WeekDayOrders = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data.data);
             setWeekday(data.data.name)
             setOrders(data.data.orders)
         })

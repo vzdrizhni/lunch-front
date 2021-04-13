@@ -12,9 +12,6 @@ const CreateMenuItem = (props) => {
     const [image, setImage] = useState('');
     const [warning, setWarning] = useState('');
 
-    console.log(name, price, menu_item_type, image);
-
-
     const createItemHandler = (e) => {
         e.preventDefault()
 
@@ -24,7 +21,7 @@ const CreateMenuItem = (props) => {
         formData.append('menu_item_type', menu_item_type.toLowerCase());
         formData.append('image', image);
 
-        fetch('http://localhost:3000/menu_items', {
+        fetch('https://frozen-spire-70160.herokuapp.com/menu_items', {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
@@ -34,7 +31,6 @@ const CreateMenuItem = (props) => {
         .then(response => response.json())
         .then(data => {
           if (data.error) {
-            console.log(data);
             setWarning(data.error)
           }
         })
@@ -69,7 +65,7 @@ const CreateMenuItem = (props) => {
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
             <Form.Label>Choose Menu Item Type</Form.Label>
-            <Form.Control as="select" onChange={(e) => setMenuItemType(e.target.value)}>
+            <Form.Control as="select" onSelect={(e) => setMenuItemType(e.target.value)}>
                 <option defaultValue="selected">First_Course</option>
                 <option>Main_Course</option>
                 <option>Drink</option>

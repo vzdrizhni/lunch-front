@@ -16,7 +16,7 @@ class Login extends Component {
     login = (e) => {
         e.preventDefault()
 
-        fetch('http://localhost:3000/login',{
+        fetch('https://frozen-spire-70160.herokuapp.com/login',{
             method: 'POST',
             mode: 'cors',
             headers: {

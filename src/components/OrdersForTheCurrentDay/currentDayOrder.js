@@ -12,7 +12,7 @@ const CurrentDayOrders = (props) => {
     const [status, setStatus] = useState(props.status);
 
     const statusChanger = () => {
-        fetch('http://localhost:3000/orders/'+props.id, {
+        fetch('https://frozen-spire-70160.herokuapp.com/orders/'+props.id, {
             method: 'PATCH',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
@@ -24,8 +24,6 @@ const CurrentDayOrders = (props) => {
         .then(data => props.setTrigger())
         .catch(err => console.log(err))
     }
-
-    console.log(status);
 
     return(
         <Card style={{ width: '18rem' }} className="order-card">

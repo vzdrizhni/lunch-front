@@ -10,7 +10,7 @@ const UserOrders = (props) => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/user_orders', {
+        fetch('https://frozen-spire-70160.herokuapp.com/user_orders', {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

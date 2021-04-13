@@ -11,7 +11,7 @@ const Item = (props) => {
 
     const addItem = (e) => {
         e.preventDefault()
-        fetch(`http://localhost:3000/weekdays/${props.match.params.id}/menus`, {
+        fetch(`https://frozen-spire-70160.herokuapp.com/weekdays/${props.match.params.id}/menus`, {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

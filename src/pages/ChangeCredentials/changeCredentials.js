@@ -13,7 +13,7 @@ const ChangeCredentials = (props) => {
 
     const changeHandler = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/change', {
+        fetch('https://frozen-spire-70160.herokuapp.com/change', {
             method: 'PUT',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

@@ -15,7 +15,7 @@ const UserOrderItem = (props) => {
     const removeItem = (param) => (e) => {
         menuItems.menu_items = menuItems.menu_items.filter(item => item.id !== param);
 
-        fetch('http://localhost:3000/orders/'+props.id, {
+        fetch('https://frozen-spire-70160.herokuapp.com/orders/'+props.id, {
             method: 'PUT',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
@@ -31,7 +31,7 @@ const UserOrderItem = (props) => {
     }
 
     const deleteOrder = () => {
-        fetch('http://localhost:3000/orders/'+props.id, {
+        fetch('https://frozen-spire-70160.herokuapp.com/orders/'+props.id, {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
