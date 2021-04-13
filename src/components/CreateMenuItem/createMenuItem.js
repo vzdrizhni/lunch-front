@@ -8,7 +8,7 @@ const CreateMenuItem = (props) => {
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [menu_item_type, setMenuItemType] = useState('');
+    const [menu_item_type, setMenuItemType] = useState('first_course');
     const [image, setImage] = useState('');
     const [warning, setWarning] = useState('');
 
@@ -65,10 +65,10 @@ const CreateMenuItem = (props) => {
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
             <Form.Label>Choose Menu Item Type</Form.Label>
-            <Form.Control as="select" onSelect={(e) => setMenuItemType(e.target.value)}>
-                <option defaultValue="selected">First_Course</option>
-                <option>Main_Course</option>
-                <option>Drink</option>
+            <Form.Control as="select" onChange={(e) => setMenuItemType(e.target.value)}>
+                <option value="first_course">First_Course</option>
+                <option value="main_course">Main_Course</option>
+                <option value="drink">Drink</option>
             </Form.Control>
             <Form.Group>
                 <Form.File id="exampleFormControlFile1" label="Choose a picture" onChange={(e) => setImage(e.target.files[0])} />
