@@ -39,9 +39,10 @@ const NavBar = (props) => {
       </nav>
 
       <Switch>
-        <Route exact path="/" component={WeekdaysList} />
+        <Route exact path="/weekdays" component={WeekdaysList} />
         <Route path="/sign-in" component={Login} />
-        <Route path="/sign-up" component={SignUp} />
+        <Route exact path="/" component={Login} />
+        <Route exact path="/sign-up" component={SignUp} />
         <Route path="/weekday/:id" component={Order} />
         <Route exact path='/createWeekDay' component={CreateWeekDay}/>
         <Route exact path='/change' component={ChangeCredentials}/>

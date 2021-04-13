@@ -17,7 +17,7 @@ const CreateWeekDay = (props) => {
         })
         .then(response => response.json())
         .then(() => {
-            props.history.push('/');
+            props.history.push('/weekdays');
         })
         .catch(err => console.log(err))
     }
