@@ -32,6 +32,7 @@ class SignUp extends Component {
                 this.setState({username: '', email: '', password: '', warning: 'Account was created'})
                 setTimeout(()=> {
                     this.setState({warning: ''})
+                    this.props.history.push('/weekdays');
                 }, 2000)
             }
         })
