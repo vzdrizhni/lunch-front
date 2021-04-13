@@ -1,7 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from "react-router-dom";
 
 import { connect } from 'react-redux';
+import { createBrowserHistory } from 'history';
+
 
 import SignUp from '../../components/SignUp/signUp'
 import Login from '../../components/SignIn/signin'
@@ -15,9 +17,13 @@ import Users from '../Users/users';
 import UserOrders from '../../pages/UsersOrders/usersOrders';
 import WeekDayOrders from '../WeekDayOrdersPage/weekDayOrderPage';
 
+export const history = createBrowserHistory({
+  basename: process.env.PUBLIC_URL
+});
+
 const NavBar = (props) => {
     return (
-    <Router>
+    <HashRouter>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -51,7 +57,7 @@ const NavBar = (props) => {
         <Route exact path='/order_days' component={WeekdaysList}/>
         <Route exact path='/order_days/:id' component={WeekDayOrders} />
       </Switch>
-    </Router>
+    </HashRouter>
     )
 }
 

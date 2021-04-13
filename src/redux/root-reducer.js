@@ -12,7 +12,7 @@ import dateReducer from './date/date.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['user', 'order']
+    whitelist: ['user', 'order', 'menu']
 }
 
 const rootReducer = combineReducers({
