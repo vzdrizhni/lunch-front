@@ -21,15 +21,15 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<p align="center">  
+<p align="center">
   <a href="https://github.com/vzdrizhni/Lunch-front">
-    <img src="src/assets/pictures/nick.png" alt="Logo" width="80" height="120">
+    <img src="src/assets/nick.png" alt="Logo" width="80" height="120">
   </a>
 
   <h3 align="center">ReactJs --> [Lunch-front App]</h3>
 
   <p align="center">
-    This is a Pizza-Shop app built with React.
+    This is a Lunch front-end app built with React.
     <br />
     <a href="https://github.com/vzdrizhni//Lunch-front"><strong>Explore the docs »</strong></a>
     <br />
