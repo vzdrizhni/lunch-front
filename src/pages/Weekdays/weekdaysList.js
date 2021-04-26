@@ -13,6 +13,8 @@ import './weekdays.css'
 const WeekdaysList = (props) => {
     const [weekDaysList, setWeekDaysList] = useState([]);
 
+    console.log(props);
+
     useEffect(() => {
         fetch('https://frozen-spire-70160.herokuapp.com/weekdays',{
             method: 'GET',

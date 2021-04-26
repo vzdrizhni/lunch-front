@@ -45,6 +45,16 @@ const UserOrderItem = (props) => {
         .catch(err => console.log(err))
     }
 
+    const getStyle = () => {
+        if (props.status === 'pending') {
+            return '#0275d8'
+        } else if (props.status === 'rejected') {
+            return '#d9534f'
+        } else {
+            return '#5cb85c'
+        }
+    }
+
     return(
         <Card style={{ width: '18rem' }} className="order-card">
             <Card.Header><span>Date: {props.name}</span></Card.Header>
@@ -57,7 +67,7 @@ const UserOrderItem = (props) => {
                     </div>
                 </ListGroup.Item>
               })}
-              <ListGroup.Item>Status: {props.status}</ListGroup.Item>
+              <ListGroup.Item>Status: <span style={{color: getStyle()}}>{props.status}</span></ListGroup.Item>
               <ListGroup.Item>Total Price: {props.mealItems.reduce((a, b) => a + b.price, 0).toFixed(2)}$</ListGroup.Item>
             </ListGroup>
               {props.status === 'pending' ? <Button variant="danger" size="sm" onClick={deleteOrder}>Remove</Button> : ''}

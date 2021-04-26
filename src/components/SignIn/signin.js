@@ -46,6 +46,9 @@ class Login extends Component {
     };
 
     render() {
+        if (this.props.user) {
+            this.props.history.push('/weekdays');
+        }
         return (
             <div className="auth-wrapper">
                 <div className="auth-inner">
