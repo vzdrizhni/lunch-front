@@ -16,7 +16,7 @@ const Menu = ({id, name}) => {
             >
                 <Card.Header>{name}</Card.Header>
                     <Card.Body>
-                      <Card.Title>{'white'} Card Title </Card.Title>
+                      <Card.Title>Menu for {name} </Card.Title>
                       <Card.Text>
                         Click here to see the menu list and choose one of the menu list types!
                       </Card.Text>
