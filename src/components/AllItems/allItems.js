@@ -14,7 +14,7 @@ const AllItems = (props) => {
     const [mealItems, setMealItems] = useState([]);
 
     useEffect(() => {
-        fetch('https://frozen-spire-70160.herokuapp.com/menu_items', {
+        fetch(`https://frozen-spire-70160.herokuapp.com/weekdays/${props.match.params.id}/menu_items`, {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
@@ -23,7 +23,8 @@ const AllItems = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            setMealItems(data.data.filter(item => !props.menu.map(orderItem => orderItem.id).includes(item.id)));
+            console.log(data);
+            setMealItems(data.data);
         })
         .catch(err => console.log(err))
     }, [props.menu.length])

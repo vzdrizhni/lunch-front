@@ -24,7 +24,13 @@ const WeekdaysList = (props) => {
             }
         })
         .then(response => response.json())
-        .then(data => setWeekDaysList(data.data))
+        .then(data => {
+            if (data.message === "Please log in") {
+                props.history.push('/sign-in')
+            } else {
+                setWeekDaysList(data.data)
+            }
+        })
         .catch()
     }, [])
 

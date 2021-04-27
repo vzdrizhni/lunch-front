@@ -6,20 +6,20 @@ import {connect} from 'react-redux';
 
 const CreateMenuItem = (props) => {
 
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
+    const [name, setName] = useState();
+    const [price, setPrice] = useState();
     const [menu_item_type, setMenuItemType] = useState('first_course');
-    const [image, setImage] = useState('');
-    const [warning, setWarning] = useState('');
+    const [image, setImage] = useState();
+    const [warning, setWarning] = useState([]);
 
     const createItemHandler = (e) => {
         e.preventDefault()
 
         const formData = new FormData();
-        formData.append('name', name);
-        formData.append('price', price);
-        formData.append('menu_item_type', menu_item_type.toLowerCase());
-        formData.append('image', image);
+        if (name) formData.append('name', name);
+        if (price) formData.append('price', price);
+        if (menu_item_type) formData.append('menu_item_type', menu_item_type.toLowerCase());
+        if (image) formData.append('image', image);
 
         fetch('https://frozen-spire-70160.herokuapp.com/menu_items', {
             method: 'POST',
@@ -30,11 +30,23 @@ const CreateMenuItem = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-          if (data.error) {
-            setWarning(data.error)
+          console.log(data);
+          if (data.message) {
+            setWarning(data.message)
+          } else {
+            clearFields()
+            props.onHide()
           }
         })
         .catch(err => console.log(err));
+    }
+
+    const clearFields = () => {
+      setName();
+      setPrice();
+      setMenuItemType();
+      setImage();
+      setWarning([]);
     }
 
     return (
@@ -45,9 +57,9 @@ const CreateMenuItem = (props) => {
         centered
         >
         <div>
-          <span className="warning">{warning}</span>
+          {warning.map(item => <div className="warning" key={item}>{item}</div>)}
         </div>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton onClick={clearFields}>
           <Modal.Title id="contained-modal-title-vcenter">
             Create A Meal Item
           </Modal.Title>
@@ -73,7 +85,7 @@ const CreateMenuItem = (props) => {
             <Form.Group>
                 <Form.File id="exampleFormControlFile1" label="Choose a picture" onChange={(e) => setImage(e.target.files[0])} />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={props.onHide}>
+            <Button variant="primary" type="submit">
               Submit
             </Button>
         </Form>
