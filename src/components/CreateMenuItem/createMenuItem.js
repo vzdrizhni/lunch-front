@@ -4,6 +4,8 @@ import {useState} from 'react';
 import {Modal, Button, Form} from 'react-bootstrap';
 import {connect} from 'react-redux';
 
+import { allItemsTriggerAction } from '../../redux/allItemsTrigger/allItemsTrigger.action.js'
+
 const CreateMenuItem = (props) => {
 
     const [name, setName] = useState();
@@ -30,11 +32,11 @@ const CreateMenuItem = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           if (data.message) {
             setWarning(data.message)
           } else {
             clearFields()
+            props.allItemsTrigger()
             props.onHide()
           }
         })
@@ -96,4 +98,8 @@ const CreateMenuItem = (props) => {
 
 const mapStateToProps = state => ({ user: state.user.currentUser });
 
-export default connect(mapStateToProps)(CreateMenuItem);
+const mapDispatchToProps = (dispatch) => ({
+  allItemsTrigger: () => dispatch(allItemsTriggerAction())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateMenuItem);

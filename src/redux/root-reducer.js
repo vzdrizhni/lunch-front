@@ -8,6 +8,7 @@ import menuReducer from './menu/menu.reducer';
 import orderReducer from './Order/order.reducer';
 import triggerReducer from './trigger/trigger.reducer';
 import dateReducer from './date/date.reducer';
+import allItemsReducer from './allItemsTrigger/allItemstriggerReducer'
 
 const persistConfig = {
     key: 'root',
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     order: orderReducer,
     trigger: triggerReducer,
     date: dateReducer,
+    allItems: allItemsReducer
 })
 
 export default persistReducer(persistConfig, rootReducer)
