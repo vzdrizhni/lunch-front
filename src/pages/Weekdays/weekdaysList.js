@@ -47,16 +47,20 @@ const WeekdaysList = (props) => {
 
   for (const day in filteredDates) {
     daysItems.push(
-        <div className='smth'>
-        <span>{day}</span>
-        {filteredDates[day].map((item) => {
-          return <WeekDaysOrderList
-            id={item.id}
-            name={item.name}
-            key={item.id}
-            {...props}
-          />
-        })};
+      <div className="smth">
+        <h4>{day}</h4>
+        <div className='weekdays-items'>
+          {filteredDates[day].map((item) => {
+            return (
+              <WeekDaysOrderList
+                id={item.id}
+                name={item.name}
+                key={item.id}
+                {...props}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }

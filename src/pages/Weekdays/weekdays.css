@@ -5,6 +5,7 @@
     position: relative;
     top: 125px;
     justify-content: space-around;
+    flex-direction: column;
 }
 
 .spinner {
@@ -13,4 +14,24 @@
     display: flex;
     justify-content: center;
     top: 80px;
+}
+
+.smth {
+    display: flex;
+    flex-direction: column;
+}
+
+.smth > h4 {
+    align-self: center;
+}
+
+.weekdays-items {
+    display: flex;
+    align-self: center;
+    padding: 40px;
+    border: 3px solid;
+}
+
+.weekdays-items :nth-child() {
+    margin: 0 20px;
 }
