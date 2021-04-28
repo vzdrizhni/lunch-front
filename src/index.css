@@ -76,3 +76,12 @@ body, html, .App, #root, .auth-wrapper {
 .create-day {
   align-self: center;
 }
+
+.order-column {
+  overflow: auto;
+  max-height: 100vh;
+}
+
+.order-column::-webkit-scrollbar {
+  display: none;
+}
