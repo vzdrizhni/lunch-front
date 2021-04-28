@@ -26,7 +26,6 @@ const AllItems = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setMealItems(data.data);
       })
       .catch((err) => console.log(err));

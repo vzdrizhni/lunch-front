@@ -41,26 +41,40 @@ const WeekdaysList = (props) => {
         (weekday) => weekday.name === day
       ))
   );
-  console.log(filteredDates);
 
   const daysItems = [];
 
   for (const day in filteredDates) {
     daysItems.push(
-      <div className="smth">
+      <div className="smth" key={day}>
         <h4>{day}</h4>
-        <div className='weekdays-items'>
-          {filteredDates[day].map((item) => {
-            return (
-              <WeekDaysOrderList
-                id={item.id}
-                name={item.name}
-                key={item.id}
-                {...props}
-              />
-            );
-          })}
-        </div>
+        {props.match.path === "/order_days" ? (
+          <div className="weekdays-items">
+            {filteredDates[day].map((item) => {
+              return (
+                <WeekDaysOrderList
+                  id={item.id}
+                  name={item.name}
+                  key={item.id}
+                  {...props}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div className="weekdays-items">
+            {filteredDates[day].map((item) => {
+              return (
+                <Menu
+                  id={item.id}
+                  name={item.name}
+                  key={item.id}
+                  {...props}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     );
   }
@@ -72,29 +86,12 @@ const WeekdaysList = (props) => {
       </div>
     );
   } else {
-    if (props.match.path === "/order_days") {
       return (
         <div className="weekdays">
-          {/* {for (const day in filteredDates) {
-                            day.map(item => {
-                                return <WeekDaysOrderList id={item.id} name={item.name} key={item.id} {...props} />
-                            })
-                    }} */}
           {daysItems}
         </div>
       );
-    } else {
-      return (
-        <div className="weekdays">
-          {weekDaysList.map((item) => {
-            return (
-              <Menu id={item.id} name={item.name} key={item.id} {...props} />
-            );
-          })}
-        </div>
-      );
     }
-  }
 };
 
 const mapStateToProps = (state) => ({ user: state.user.currentUser });

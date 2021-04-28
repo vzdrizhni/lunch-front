@@ -6,7 +6,7 @@ import {Card} from 'react-bootstrap'
 
 const Menu = ({id, name}) => {
     return (
-        <div>
+        <div className='order-card'>
             <Link to={`/weekday/${id}`}>
             <Card
                 bg={'Secondary'.toLowerCase()}

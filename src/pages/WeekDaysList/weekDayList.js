@@ -6,7 +6,7 @@ import {Card} from 'react-bootstrap'
 
 const WeekDaysOrderList = ({id, name}) => {
     return (
-        <div>
+        <div className='order-card'>
             <Link to={`/order_days/${id}`}>
             <Card
                 bg={'Warning'.toLowerCase()}

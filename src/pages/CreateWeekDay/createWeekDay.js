@@ -25,7 +25,7 @@ const CreateWeekDay = (props) => {
 
     return (
         <div className='weekdays'>
-            <div className="mb-2">
+            <div className="mb-2 create-day">
                 <Button variant="light" size="lg" onClick={createDay} >
                  Create A Menu For Today
                 </Button>
