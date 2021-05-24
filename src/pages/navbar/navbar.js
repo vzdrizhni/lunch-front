@@ -10,6 +10,8 @@ import {
 import { connect } from "react-redux";
 import { createBrowserHistory } from "history";
 import { ActionCable } from "react-actioncable-provider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 import SignUp from "../../components/SignUp/signUp";
 import Login from "../../components/SignIn/signin";
@@ -64,6 +66,7 @@ const NavBar = (props) => {
               <Logout />
             )}
           </div>
+          <FontAwesomeIcon icon={faBell} />
         </div>
       </nav>
 
