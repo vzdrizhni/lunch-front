@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import {useState, useEffect} from 'react';
+import React from 'react';
 
 import CurrentDayOrders from '../../components/OrdersForTheCurrentDay/currentDayOrder';
 
@@ -9,7 +10,7 @@ const WeekDayOrders = (props) => {
     const [weekday, setWeekday] = useState([]);
 
     useEffect(() => {
-        fetch('https://frozen-spire-70160.herokuapp.com/weekdays/'+props.match.params.id, {
+        fetch('http://localhost:3000/weekdays/'+props.match.params.id, {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

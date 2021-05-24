@@ -8,7 +8,7 @@ import '../Weekdays/weekdays.css'
 const CreateWeekDay = (props) => {
 
     const createDay = () => {
-        fetch('https://frozen-spire-70160.herokuapp.com/weekdays', {
+        fetch('http://localhost:3000/weekdays', {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

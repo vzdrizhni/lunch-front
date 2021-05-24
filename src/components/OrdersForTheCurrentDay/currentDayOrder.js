@@ -5,9 +5,11 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
+import { ActionCable } from "react-actioncable-provider";
 
 import { useState } from "react";
 import { connect } from "react-redux";
+import React from "react";
 
 import { setTrigger } from "../../redux/trigger/trigger.actions";
 
@@ -17,8 +19,13 @@ const CurrentDayOrders = (props) => {
   const [status, setStatus] = useState(props.status);
   const [statusDisplay, setStatusDisplay] = useState("none");
 
+  const handleReceivedMessage = response => {
+    console.log(JSON.parse(response));
+    console.log(props.user.user.id);
+  };
+
   const statusChanger = () => {
-    fetch("https://frozen-spire-70160.herokuapp.com/orders/" + props.id, {
+    fetch("http://localhost:3000/orders/" + props.id, {
       method: "PATCH",
       headers: {
         Authorization: "Bearer " + props.user.token,
@@ -29,48 +36,54 @@ const CurrentDayOrders = (props) => {
       .then((response) => response.json())
       .then((data) => {
         props.setTrigger();
-        setStatusDisplay('inline-block')
+        setStatusDisplay("inline-block");
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <Card style={{ width: "18rem" }} className="order-card">
-      <Card.Header>
-        <span>Date: {props.name}</span>
-      </Card.Header>
-      <ListGroup variant="flush">
-        <ListGroup.Item className="status">
-          <span>Status:</span>
-          <Dropdown>
-            <DropdownButton
-              id="dropdown-basic-button"
-              title={status}
-              onSelect={(e) => setStatus(e)}
-            >
-              <Dropdown.Item eventKey="accepted" style={{ color: "#5cb85c" }}>
-                Accept
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="rejected" style={{ color: "#d9534f" }}>
-                Reject
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="pending" style={{ color: "#0275d8" }}>
-                Pending
-              </Dropdown.Item>
-            </DropdownButton>
-          </Dropdown>
+    <div>
+      <ActionCable
+        channel={{channel: "NotificationsChannel", room: props.user.user.id}}
+        onReceived={handleReceivedMessage}
+      />
+      <Card style={{ width: "18rem" }} className="order-card">
+        <Card.Header>
+          <span>Date: {props.name}</span>
+        </Card.Header>
+        <ListGroup variant="flush">
+          <ListGroup.Item className="status">
+            <span>Status:</span>
+            <Dropdown>
+              <DropdownButton
+                id="dropdown-basic-button"
+                title={status}
+                onSelect={(e) => setStatus(e)}
+              >
+                <Dropdown.Item eventKey="accepted" style={{ color: "#5cb85c" }}>
+                  Accept
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="rejected" style={{ color: "#d9534f" }}>
+                  Reject
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="pending" style={{ color: "#0275d8" }}>
+                  Pending
+                </Dropdown.Item>
+              </DropdownButton>
+            </Dropdown>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <span>Price: {props.total_price} $</span>
+          </ListGroup.Item>
+        </ListGroup>
+        <Button variant="warning" size="sm" onClick={statusChanger}>
+          Submit
+        </Button>
+        <ListGroup.Item style={{ display: statusDisplay }}>
+          <span>Status changed to {props.status}</span>
         </ListGroup.Item>
-        <ListGroup.Item>
-          <span>Price: {props.total_price} $</span>
-        </ListGroup.Item>
-      </ListGroup>
-      <Button variant="warning" size="sm" onClick={statusChanger}>
-        Submit
-      </Button>
-      <ListGroup.Item style={{ display: statusDisplay }}>
-        <span>Status changed to {props.status}</span>
-      </ListGroup.Item>
-    </Card>
+      </Card>
+    </div>
   );
 };
 

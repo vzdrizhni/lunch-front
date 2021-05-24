@@ -3,6 +3,8 @@ import {useState, useEffect} from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+import React from 'react';
+
 import './change.css';
 
 const ChangeCredentials = (props) => {
@@ -13,7 +15,7 @@ const ChangeCredentials = (props) => {
 
     const changeHandler = (e) => {
         e.preventDefault();
-        fetch('https://frozen-spire-70160.herokuapp.com/change', {
+        fetch('http://localhost:3000/change', {
             method: 'PUT',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

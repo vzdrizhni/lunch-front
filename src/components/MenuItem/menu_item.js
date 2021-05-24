@@ -16,7 +16,7 @@ const MenuItem = (props) => {
     let disabled;
 
     useEffect(() => {
-        fetch('https://frozen-spire-70160.herokuapp.com/weekdays/' + props.match.params.id,{
+        fetch('http://localhost:3000/weekdays/' + props.match.params.id,{
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
