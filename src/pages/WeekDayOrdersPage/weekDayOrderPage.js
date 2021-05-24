@@ -8,9 +8,10 @@ const WeekDayOrders = (props) => {
 
     const [orders, setOrders] = useState([]);
     const [weekday, setWeekday] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/weekdays/'+props.match.params.id, {
+        fetch('http://localhost:3000/weekdays/'+props.match.params.id+'/orders', {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
@@ -19,15 +20,16 @@ const WeekDayOrders = (props) => {
         })
         .then(response => response.json())
         .then(data => {
-            setWeekday(data.data.name)
+            setWeekday(data.data.weekday.name)
             setOrders(data.data.orders)
+            console.log(data);
         })
         .catch(err => console.log(err))
     }, [props.trigger])
 
     return(
         <div className="order">
-            {orders.map(item => <CurrentDayOrders key={item.id} total_price={item.total_price} name={weekday} status={item.status} id={item.id} />)}
+            {orders.map(item => <CurrentDayOrders key={item.id} total_price={item.total_price} name={weekday} status={item.status} id={item.id} owner={item.user_id} />)}
         </div>
     )
 };
