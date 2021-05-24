@@ -5,7 +5,6 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
-import { ActionCable } from "react-actioncable-provider";
 
 import { useState } from "react";
 import { connect } from "react-redux";
@@ -18,13 +17,6 @@ import "./orderCard.css";
 const CurrentDayOrders = (props) => {
   const [status, setStatus] = useState(props.status);
   const [statusDisplay, setStatusDisplay] = useState("none");
-
-  const handleReceivedMessage = response => {
-    console.log(JSON.parse(response));
-    console.log(props.user.user.id);
-  };
-
-  console.log(props);
 
   const statusChanger = () => {
     fetch("http://localhost:3000/orders/" + props.id, {
@@ -46,16 +38,12 @@ const CurrentDayOrders = (props) => {
 
   return (
     <div>
-      <ActionCable
-        channel={{channel: "NotificationsChannel", room: props.user.user.id}}
-        onReceived={handleReceivedMessage}
-      />
       <Card style={{ width: "18rem" }} className="order-card">
         <Card.Header>
           <span>Date: {props.name}</span>
         </Card.Header>
         <ListGroup variant="flush">
-        <ListGroup.Item>
+          <ListGroup.Item>
             <span>User id: {props.owner}</span>
           </ListGroup.Item>
           <ListGroup.Item className="status">
