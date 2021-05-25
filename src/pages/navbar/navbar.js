@@ -13,6 +13,8 @@ import { ActionCable } from "react-actioncable-provider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 
+import { addNotification, removeFirstNotification } from '../../redux/notifications/notifications.actions'
+
 import SignUp from "../../components/SignUp/signUp";
 import Login from "../../components/SignIn/signin";
 import Logout from "../../components/Logout/logout";
@@ -24,6 +26,7 @@ import ChangeCredentials from "../ChangeCredentials/changeCredentials";
 import Users from "../Users/users";
 import UserOrders from "../../pages/UsersOrders/usersOrders";
 import WeekDayOrders from "../WeekDayOrdersPage/weekDayOrderPage";
+import NotificationsList from '../../components/NotificationsList/notificationsList'
 
 export const history = createBrowserHistory({
   basename: process.env.PUBLIC_URL,
@@ -31,7 +34,12 @@ export const history = createBrowserHistory({
 
 const NavBar = (props) => {
   const handleReceivedMessage = (response) => {
-    console.log(JSON.parse(response));
+    response = JSON.parse(response);
+    console.log(response);
+    props.addNotificationDispatcher(response);
+    if (props.notifications.length > 5) {
+      props.removeFirstNotificationDispatcher()
+    }
   };
 
   return (
@@ -67,6 +75,7 @@ const NavBar = (props) => {
             )}
           </div>
           <FontAwesomeIcon icon={faBell} />
+          <NotificationsList />
         </div>
       </nav>
 
@@ -87,6 +96,11 @@ const NavBar = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({ user: state.user.currentUser });
+const mapStateToProps = (state) => ({ user: state.user.currentUser, notifications: state.notifications });
 
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = (dispatch) => ({
+  addNotificationDispatcher: (item) => dispatch(addNotification(item)),
+  removeFirstNotificationDispatcher: () => dispatch(removeFirstNotification())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

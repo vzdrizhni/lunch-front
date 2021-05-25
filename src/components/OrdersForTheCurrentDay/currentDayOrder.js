@@ -29,7 +29,6 @@ const CurrentDayOrders = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         props.setTrigger();
         setStatusDisplay("inline-block");
       })
