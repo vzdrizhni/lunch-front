@@ -3,13 +3,19 @@ const INITIAL_STATE = []
 const notificationReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'ADD_NOTIFICATION':
-            console.log(action.payload);
+            if (state.length >= 5) {
+                console.log('gotcha');
+                return [
+                    ...state.slice(1, 5),
+                    action.payload
+                ]
+            }
             return [
                 ...state,
                 action.payload
             ]
         case 'REMOVE_NOTIFICATION':
-            return [...state.slice(1, 5)]
+            return [...state.slice(1, 6)]
         default:
             return state;
     }

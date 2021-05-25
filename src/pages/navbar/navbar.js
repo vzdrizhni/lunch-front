@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +12,8 @@ import { createBrowserHistory } from "history";
 import { ActionCable } from "react-actioncable-provider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
+import useSound from 'use-sound';
+import boopSfx from '../../assets/mixkit-software-interface-remove-2576.wav';
 
 import { addNotification, removeFirstNotification } from '../../redux/notifications/notifications.actions'
 
@@ -33,14 +35,28 @@ export const history = createBrowserHistory({
 });
 
 const NavBar = (props) => {
+
+  useEffect(() => {
+    play();
+  }, [props.notifications])
+
+  const [statusDisplay, setStatusDisplay] = useState("none");
+
+  const [play] = useSound(boopSfx);
+
   const handleReceivedMessage = (response) => {
     response = JSON.parse(response);
-    console.log(response);
     props.addNotificationDispatcher(response);
-    if (props.notifications.length > 5) {
-      props.removeFirstNotificationDispatcher()
-    }
   };
+
+  const displayHandler = () => {
+    if (statusDisplay === "none") {
+      setStatusDisplay("flex")
+    } else {
+      setStatusDisplay("none")
+    }
+  }
+
 
   return (
     <HashRouter>
@@ -74,8 +90,8 @@ const NavBar = (props) => {
               <Logout />
             )}
           </div>
-          <FontAwesomeIcon icon={faBell} />
-          <NotificationsList />
+          <FontAwesomeIcon icon={faBell} onClick={displayHandler} />
+          <NotificationsList style={{ display: statusDisplay }} />
         </div>
       </nav>
 

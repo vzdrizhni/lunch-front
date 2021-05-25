@@ -1,0 +1,21 @@
+.notification-list {
+    position: relative;
+    top: 60px;
+    position: absolute;
+    top: 100%;
+    right: 10%;
+    background-color: #ffffff;
+    width: 23vw;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    flex-direction: column;
+    border: 1px solid black;
+}

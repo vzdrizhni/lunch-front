@@ -22,7 +22,6 @@ const WeekDayOrders = (props) => {
         .then(data => {
             setWeekday(data.data.weekday.name)
             setOrders(data.data.orders)
-            console.log(data);
         })
         .catch(err => console.log(err))
     }, [props.trigger])

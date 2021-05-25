@@ -2,13 +2,15 @@ import React from "react";
 
 import { connect } from "react-redux";
 
+import './notificationList.css'
+
 const NotificationsList = (props) => {
-    console.log(props.notifications);
+    console.log(props);
   return (
-    <div className="notification-list">
+    <div className="notification-list" style={props.style}>
       {props.notifications.map((item, index) => (
-        <div key={index}>
-            <span key={index}>{item.status}</span>
+        <div key={index} className="notification-item">
+            <span key={index}>Your order status changed to {item.status}</span>
         </div>
       ))}
     </div>
