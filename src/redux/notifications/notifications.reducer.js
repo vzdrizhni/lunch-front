@@ -3,6 +3,7 @@ const INITIAL_STATE = []
 const notificationReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'ADD_NOTIFICATION':
+            action.payload["checked"] = false
             if (state.length >= 5) {
                 console.log('gotcha');
                 return [

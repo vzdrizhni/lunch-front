@@ -19,3 +19,15 @@
     flex-direction: column;
     border: 1px solid black;
 }
+
+.alert-number {
+    position: relative;
+    top: 7px;
+    left: -7px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+}

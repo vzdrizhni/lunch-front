@@ -29,6 +29,8 @@ import Users from "../Users/users";
 import UserOrders from "../../pages/UsersOrders/usersOrders";
 import WeekDayOrders from "../WeekDayOrdersPage/weekDayOrderPage";
 import NotificationsList from '../../components/NotificationsList/notificationsList'
+import NotificationsAlert from '../../components/NotificationsAlert/notificationsAlert'
+
 
 export const history = createBrowserHistory({
   basename: process.env.PUBLIC_URL,
@@ -47,6 +49,7 @@ const NavBar = (props) => {
   const handleReceivedMessage = (response) => {
     response = JSON.parse(response);
     props.addNotificationDispatcher(response);
+    console.log(props.notifications);
   };
 
   const displayHandler = () => {
@@ -91,6 +94,7 @@ const NavBar = (props) => {
             )}
           </div>
           <FontAwesomeIcon icon={faBell} onClick={displayHandler} />
+          <NotificationsAlert />
           <NotificationsList style={{ display: statusDisplay }} />
         </div>
       </nav>
