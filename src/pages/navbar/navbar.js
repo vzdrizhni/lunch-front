@@ -30,23 +30,23 @@ export const history = createBrowserHistory({
 });
 
 const NavBar = (props) => {
-
-  const handleReceivedMessage = response => {
+  const handleReceivedMessage = (response) => {
     console.log(JSON.parse(response));
-    console.log(props.user.user.id);
   };
 
   return (
     <HashRouter>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
-          <ActionCable
-            channel={{
-              channel: "NotificationsChannel",
-              room: props.user.user.id,
-            }}
-            onReceived={handleReceivedMessage}
-          />
+          {props.user ? (
+            <ActionCable
+              channel={{
+                channel: "NotificationsChannel",
+                room: props.user.user.id,
+              }}
+              onReceived={handleReceivedMessage}
+            />
+          ) : undefined}
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             {props.user && props.user.user.admin ? <AdminDropdown /> : ""}
             {!props.user ? (
