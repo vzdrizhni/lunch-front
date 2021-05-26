@@ -2,8 +2,8 @@
     position: relative;
     top: 60px;
     position: absolute;
-    top: 100%;
-    right: 10%;
+    top: 151%;
+    right: -100%;
     background-color: #ffffff;
     width: 23vw;
     flex-direction: column;
@@ -21,13 +21,14 @@
 }
 
 .alert-number {
-    position: relative;
-    top: 7px;
-    left: -7px;
+    position: absolute;
+    top: 45%;
+    left: 84.2%;
     border-radius: 50%;
     background-color: red;
     color: white;
     width: 24px;
     display: flex;
     justify-content: center;
+    font-weight: 700;
 }

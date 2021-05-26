@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import './notificationList.css'
 
 const NotificationsList = (props) => {
-    console.log(props);
   return (
     <div className="notification-list" style={props.style}>
       {props.notifications.map((item, index) => (

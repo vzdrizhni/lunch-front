@@ -16,7 +16,7 @@ const notificationReducer = (state = INITIAL_STATE, action) => {
                 action.payload
             ]
         case 'REMOVE_NOTIFICATION':
-            return [...state.slice(1, 6)]
+            return [...state.map(item => item.checked === false ? {...item, checked: true} : item)]
         default:
             return state;
     }

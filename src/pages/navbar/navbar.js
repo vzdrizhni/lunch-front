@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,10 +12,13 @@ import { createBrowserHistory } from "history";
 import { ActionCable } from "react-actioncable-provider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
-import useSound from 'use-sound';
-import boopSfx from '../../assets/mixkit-software-interface-remove-2576.wav';
+import useSound from "use-sound";
+import boopSfx from "../../assets/mixkit-software-interface-remove-2576.wav";
 
-import { addNotification, removeFirstNotification } from '../../redux/notifications/notifications.actions'
+import {
+  addNotification,
+  removeFirstNotification,
+} from "../../redux/notifications/notifications.actions";
 
 import SignUp from "../../components/SignUp/signUp";
 import Login from "../../components/SignIn/signin";
@@ -28,38 +31,41 @@ import ChangeCredentials from "../ChangeCredentials/changeCredentials";
 import Users from "../Users/users";
 import UserOrders from "../../pages/UsersOrders/usersOrders";
 import WeekDayOrders from "../WeekDayOrdersPage/weekDayOrderPage";
-import NotificationsList from '../../components/NotificationsList/notificationsList'
-import NotificationsAlert from '../../components/NotificationsAlert/notificationsAlert'
-
+import NotificationsList from "../../components/NotificationsList/notificationsList";
+import NotificationsAlert from "../../components/NotificationsAlert/notificationsAlert";
 
 export const history = createBrowserHistory({
   basename: process.env.PUBLIC_URL,
 });
 
 const NavBar = (props) => {
+  const [play] = useSound(boopSfx);
+  const [statusDisplay, setStatusDisplay] = useState("none");
+  const [playSound, setPlaySound] = useState(false);
 
   useEffect(() => {
     play();
-  }, [props.notifications])
-
-  const [statusDisplay, setStatusDisplay] = useState("none");
-
-  const [play] = useSound(boopSfx);
+  }, [playSound]);
 
   const handleReceivedMessage = (response) => {
     response = JSON.parse(response);
     props.addNotificationDispatcher(response);
-    console.log(props.notifications);
+    setPlaySound((prev) => {
+      return !prev;
+    });
   };
 
   const displayHandler = () => {
     if (statusDisplay === "none") {
-      setStatusDisplay("flex")
+      setStatusDisplay("flex");
     } else {
-      setStatusDisplay("none")
+      setStatusDisplay("none");
     }
-  }
-
+    if (props.notifications.map((item) => item.checked).includes(false)) {
+      console.log(props.notifications);
+      props.removeFirstNotificationDispatcher();
+    }
+  };
 
   return (
     <HashRouter>
@@ -93,9 +99,11 @@ const NavBar = (props) => {
               <Logout />
             )}
           </div>
-          <FontAwesomeIcon icon={faBell} onClick={displayHandler} />
-          <NotificationsAlert />
-          <NotificationsList style={{ display: statusDisplay }} />
+          <div className='notification-block' style={{position: 'relative'}}>
+            <FontAwesomeIcon icon={faBell} onClick={displayHandler} />
+            <NotificationsAlert />
+            <NotificationsList style={{ display: statusDisplay }} />
+          </div>
         </div>
       </nav>
 
@@ -116,11 +124,14 @@ const NavBar = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({ user: state.user.currentUser, notifications: state.notifications });
+const mapStateToProps = (state) => ({
+  user: state.user.currentUser,
+  notifications: state.notifications,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   addNotificationDispatcher: (item) => dispatch(addNotification(item)),
-  removeFirstNotificationDispatcher: () => dispatch(removeFirstNotification())
-})
+  removeFirstNotificationDispatcher: () => dispatch(removeFirstNotification()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
