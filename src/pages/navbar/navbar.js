@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import useSound from "use-sound";
 import boopSfx from "../../assets/mixkit-software-interface-remove-2576.wav";
+import moment from 'moment';
 
 import {
   addNotification,
@@ -49,6 +50,7 @@ const NavBar = (props) => {
 
   const handleReceivedMessage = (response) => {
     response = JSON.parse(response);
+    response["time"] = moment().format('LLL');
     props.addNotificationDispatcher(response);
     setPlaySound((prev) => {
       return !prev;

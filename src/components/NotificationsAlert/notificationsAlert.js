@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {connect} from 'react-redux';
 
 const notificationsAlert = (props) => {
+
     if (props.notifications.filter(item => item.checked === false).length > 0) {
         return(
             <div className="alert-number">

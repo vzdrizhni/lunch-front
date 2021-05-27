@@ -14,6 +14,8 @@
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
     "history": "^4.10.1",
+    "measure-time": "^5.0.3",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-actioncable-provider": "^1.0.3",
     "react-bootstrap": "^1.5.2",
