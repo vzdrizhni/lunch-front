@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import {useState, useEffect} from 'react';
+import React from 'react';
 
 import UserItem from '../../components/UserItem/userItem';
 
@@ -10,7 +11,7 @@ const Users = (props) => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch('https://frozen-spire-70160.herokuapp.com/users', {
+        fetch('http://localhost:3000/users', {
             method: 'GET',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

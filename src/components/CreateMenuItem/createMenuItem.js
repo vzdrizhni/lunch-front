@@ -23,7 +23,7 @@ const CreateMenuItem = (props) => {
         if (menu_item_type) formData.append('menu_item_type', menu_item_type.toLowerCase());
         if (image) formData.append('image', image);
 
-        fetch('https://frozen-spire-70160.herokuapp.com/menu_items', {
+        fetch('http://localhost:3000/menu_items', {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,

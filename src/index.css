@@ -85,3 +85,10 @@ body, html, .App, #root, .auth-wrapper {
 .order-column::-webkit-scrollbar {
   display: none;
 }
+
+.fa-bell {
+  margin-left: 30px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #888;
+}

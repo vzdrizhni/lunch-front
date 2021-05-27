@@ -16,7 +16,7 @@ class SignUp extends Component {
   register = (e) => {
     e.preventDefault();
 
-    fetch("https://frozen-spire-70160.herokuapp.com/users", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       mode: "cors",
       headers: {

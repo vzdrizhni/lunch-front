@@ -4,11 +4,18 @@
   "homepage": "./",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
     "history": "^4.10.1",
+    "measure-time": "^5.0.3",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-actioncable-provider": "^1.0.3",
     "react-bootstrap": "^1.5.2",
@@ -19,6 +26,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
+    "use-sound": "^3.0.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

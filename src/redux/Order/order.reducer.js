@@ -2,7 +2,7 @@ import orderActionTypes from './order.types'
 
 const INITIAL_STATE = []
 
-const userReducer = (state = INITIAL_STATE, action) => {
+const orderReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case orderActionTypes.ADD_ITEMS_TO_ORDER:
             return [
@@ -18,4 +18,4 @@ const userReducer = (state = INITIAL_STATE, action) => {
     }
 }
 
-export default userReducer
+export default orderReducer

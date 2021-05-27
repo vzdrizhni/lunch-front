@@ -12,11 +12,11 @@ import { API_WS_ROOT } from "./constants/index";
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter>
-      <ActionCableProvider url={API_WS_ROOT}>
-        <PersistGate persistor={persistor}>
+      <PersistGate persistor={persistor}>
+        <ActionCableProvider url={API_WS_ROOT}>
           <App />
-        </PersistGate>
-      </ActionCableProvider>
+        </ActionCableProvider>
+      </PersistGate>
     </HashRouter>
   </Provider>,
   document.getElementById("root")

@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 
 import {setTrigger} from '../../redux/trigger/trigger.actions';
 
+import React from 'react';
+
 import './userOrderItems.css';
 
 const UserOrderItem = (props) => {
@@ -15,7 +17,7 @@ const UserOrderItem = (props) => {
     const removeItem = (param) => (e) => {
         menuItems.menu_items = menuItems.menu_items.filter(item => item.id !== param);
 
-        fetch('https://frozen-spire-70160.herokuapp.com/orders/'+props.id, {
+        fetch('http://localhost:3000/orders/'+props.id, {
             method: 'PUT',
             headers: {
                 Authorization: 'Bearer ' + props.user.token,
