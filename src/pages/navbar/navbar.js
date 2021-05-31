@@ -85,7 +85,7 @@ const NavBar = (props) => {
             />
           ) : undefined}
           <div className="navbar-collapse" id="navbarTogglerDemo02">
-          <Menu pageWrapId={ "navbarTogglerDemo02" } outerContainerId={ "navbar-expand-lg" } id={ "sidebar" } customBurgerIcon={ <img src={BurgerPicture} /> }>
+          <Menu id={ "sidebar" } customBurgerIcon={ <img src={BurgerPicture} width={ '35%' } /> }>
             {props.user && props.user.user.admin ? <AdminDropdown /> : ""}
             {!props.user ? (
               <ul className="navbar-nav ml-auto">
