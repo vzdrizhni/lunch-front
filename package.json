@@ -19,6 +19,7 @@
     "react": "^17.0.2",
     "react-actioncable-provider": "^1.0.3",
     "react-bootstrap": "^1.5.2",
+    "react-burger-menu": "^3.0.6",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",

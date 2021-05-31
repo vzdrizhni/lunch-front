@@ -15,6 +15,8 @@ import { faBell } from "@fortawesome/free-solid-svg-icons";
 import useSound from "use-sound";
 import boopSfx from "../../assets/mixkit-software-interface-remove-2576.wav";
 import moment from 'moment';
+import { slide as Menu } from 'react-burger-menu';
+import BurgerPicture from '../../assets/free-icon-menu-1828859.png'
 
 import {
   addNotification,
@@ -82,7 +84,8 @@ const NavBar = (props) => {
               onReceived={handleReceivedMessage}
             />
           ) : undefined}
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <div className="navbar-collapse" id="navbarTogglerDemo02">
+          <Menu pageWrapId={ "navbarTogglerDemo02" } outerContainerId={ "navbar-expand-lg" } id={ "sidebar" } customBurgerIcon={ <img src={BurgerPicture} /> }>
             {props.user && props.user.user.admin ? <AdminDropdown /> : ""}
             {!props.user ? (
               <ul className="navbar-nav ml-auto">
@@ -100,6 +103,7 @@ const NavBar = (props) => {
             ) : (
               <Logout />
             )}
+          </Menu>
           </div>
           <div className='notification-block' style={{position: 'relative'}}>
             <FontAwesomeIcon icon={faBell} onClick={displayHandler} />
